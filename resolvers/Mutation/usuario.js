@@ -4,6 +4,15 @@ const { perfil: obterPerfil } = require('../Query/perfil')
 const { usuario: obterUsuario } = require('../Query/usuario')
 
 const mutations = {
+    async registrarUsuario(_, { dados }) {
+        return mutations.novoUsuario(_, {
+            dados:{
+                nome: dados.nome,
+                email: dados.email,
+                senha: dados.senha,
+            }
+        })
+    },
     async novoUsuario(_, { dados }) {
         try {
             const idsPerfis = []
