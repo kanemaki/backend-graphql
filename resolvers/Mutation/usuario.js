@@ -30,7 +30,7 @@ const mutations = {
                 if(perfil) idsPerfis.push(perfil.id)
             }
 
-            // criptografar a senha
+            //criptografar a senha
             const salt = bcrypt.genSaltSync()
             dados.senha = bcrypt.hashSync(dados.senha, salt)
           
@@ -90,7 +90,7 @@ const mutations = {
                 }
 
                 if(dados.senha){
-                    // criptografar a senha
+                    //criptografar a senha
                     const salt = bcrypt.genSaltSync()
                     dados.senha = bcrypt.hashSync(dados.senha, salt)
                 }
