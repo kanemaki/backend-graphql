@@ -10,9 +10,6 @@ module.exports = {
     user: process.env.APP_DB_USER,
     password: process.env.APP_DB_PASSWORD
 
-    //database: 'projeto-final',
-    //user:     'root',
-    //password: '251366'
   },
   pool: {
     min: 2, 
