@@ -1,9 +1,31 @@
 const db = require('../../config/db')
+const bcrypt = require('bcrypt-nodejs')
+const { getUsuarioLogado } = require('../comum/usuario')
+const { addErrorLoggingToSchema } = require('apollo-server')
 
 module.exports = {
+    async login(_, { dados }) {
+        const usuario = await db('usuarios')
+            .where({ email: dados.email })
+            .first()
+
+            if(!usuario) {
+                throw new Error('Usuario / Senha invalido')
+            }
+            
+            const saoIguais = bcrypt.compareSync(dados.senha, usuario.senha)
+
+            if(!saoIguais) {
+                throw new Error('Usuario / Senha invalido') 
+            }
+
+            return getUsuarioLogado(usuario)
+    },
+
     usuarios() {
         return db('usuarios')
     },
+
     usuario(_, { filtro }) {
         if(!filtro) return null
         const { id, email } = filtro
