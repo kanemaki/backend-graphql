@@ -5,7 +5,7 @@ module.exports = async ({ req }) => {
     await require('./simularUsuarioLogado')(req)
 
     const auth = req.headers.authorization
-    const token = auth && auth.sustring(7)
+    const token = auth && auth.substring(7)
 
     let usuario = null
     let admin = false
@@ -27,7 +27,7 @@ module.exports = async ({ req }) => {
     }
 
     const err = new Error('Acesso Negado!')
-
+    
     return {
         usuario,
         admin,

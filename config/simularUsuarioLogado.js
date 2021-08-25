@@ -26,7 +26,7 @@ module.exports = async req => {
     if(usuario) {
         const { token } = await getUsuarioLogado(usuario)
         req.headers = {
-            authorization: `Bearer ${token} `
+            authorization: `Bearer ${token}`
         }
     }
 }
