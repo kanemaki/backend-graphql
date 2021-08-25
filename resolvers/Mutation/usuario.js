@@ -13,7 +13,9 @@ const mutations = {
             }
         })
     },
-    async novoUsuario(_, { dados }) {
+    async novoUsuario(_, { dados }, ctx) {
+        ctx && ctx.validarUsuario()
+
         try {
             const idsPerfis = []
               
@@ -49,7 +51,9 @@ const mutations = {
             throw new Error(e.sqlMessage)
         }
     },
-    async excluirUsuario(_, args) {
+    async excluirUsuario(_, args, ctx) {
+        ctx && ctx.validarUsuario()
+
         try {
             const usuario = await obterUsuario(_, args)
             if(usuario) {
